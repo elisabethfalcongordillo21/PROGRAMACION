@@ -59,7 +59,6 @@ if (edadRecomendada>18){
 
     mensaje.concat("Y no la lies!!");
 
-    
     System.out.println("Cuidado que es para mayores de edad");
     System.out.println("Ten cuidado");
 }
@@ -70,6 +69,19 @@ if (nombreJuego.equals("Mario Bross")) {
     System.out.println("El juego " + nombreJuego + " es el más guay de nintendo y es para mayores de" + edadRecomendada + "años");
     
 }
-}
+//Saca el nombre del juego si cumple que su edad reccomendada esta entre 5 y 10 años y ademas cumple
+//una de las dos siguientes condiciones, que tiene los ninveles que leemos por pantalla
+// o que su nivel de dificultad es C
 
+int numNivelesTeclado = 0;
+
+String txtnumNivelesTeclado = JOptionPane.showInputDialog(
+        null, "Introduzca los niveles", "Niveles", JOptionPane.QUESTION_MESSAGE);
+
+ numNivelesTeclado = Integer.parseInt(txtnumNivelesTeclado);
+
+if ((edadRecomendada >= 5 && edadRecomendada <= 10 ) && (numNivelesTeclado == numNiveles || nivelDificultad == 'C')) 
+            System.out.println("El nombre del juego es" + nombreJuego); 
+    
+}
 }

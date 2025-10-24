@@ -22,7 +22,7 @@ public class EjemploOperadoresComparacion {
 
 
     teclado.close();
-
+    
 
     }
 }

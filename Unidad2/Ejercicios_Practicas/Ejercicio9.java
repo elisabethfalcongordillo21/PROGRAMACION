@@ -19,6 +19,7 @@ public class Ejercicio9 {
         numEntradas = teclado.nextInt();
         System.out.println("¿Qué día de la semana vas al cine? (Ingresa el numero correspondiente al día, ej Lunes=1...)");
         diaSemana= teclado.nextInt();
+        teclado.nextLine();
         System.out.println("¿El día es festivo? (Si/No)");
         boolean esFestivo = (boolean) (teclado.nextLine().equalsIgnoreCase("si"));
         System.out.println("¿Eres estudiante? (Si/No)");
@@ -28,17 +29,20 @@ public class Ejercicio9 {
 
         if (tieneDiscapacidad)
             precio=0;    
-        else if(diaSemana==3 &&  edad<25);
+        else if(diaSemana==3 &&  edad<25)
             descuento=0;
         else if (edad>60 || esEstudiante && descuento==0) {
-            
+            descuento=0.15f;
         }
-        
-    
-    
-    
-    
-    
-    
+        else if(esFestivo){
+            descuento=0;
+        }
+        else  if (numEntradas>=2 && diaSemana>=6) {
+            descuento=descuento + 0.10f;
+        }
+        precio = (base - (base * descuento)) * numEntradas;
+        System.out.printf("El precio total es: %.2f€%n" , precio);
+        //He usado %.2f€%n para que solo salgan dos decimales, lo he buscado en internet.
+        teclado.close();
     }
 }

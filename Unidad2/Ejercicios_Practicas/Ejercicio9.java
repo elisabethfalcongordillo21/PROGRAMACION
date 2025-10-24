@@ -23,7 +23,16 @@ public class Ejercicio9 {
         boolean esFestivo = (boolean) (teclado.nextLine().equalsIgnoreCase("si"));
         System.out.println("¿Eres estudiante? (Si/No)");
         boolean esEstudiante = (boolean) (teclado.nextLine().equalsIgnoreCase("si"));
-        
+        System.out.println("¿Qué edad tienes?");
+        edad= teclado.nextInt();
+
+        if (tieneDiscapacidad)
+            precio=0;    
+        else if(diaSemana==3 &&  edad<25);
+            descuento=0;
+        else if (edad>60 || esEstudiante && descuento==0) {
+            
+        }
         
     
     

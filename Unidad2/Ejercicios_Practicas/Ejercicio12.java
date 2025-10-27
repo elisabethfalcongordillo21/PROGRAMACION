@@ -85,12 +85,3 @@ public class Ejercicio12 {
 
 
 
-
-
-
-
-
-
-        
-    }
-}

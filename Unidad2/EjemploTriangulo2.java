@@ -20,7 +20,7 @@ public class EjemploTriangulo2 {
             }
 
            //En cada nivel tengo que dibujar 1+2*i asteriscos
-           for (int j = 0; j < 1 + 2 * i  ; j++);
+           for (int j=0; j < (1+2*i) ; j++)
            {
             System.out.print("*");
            } 

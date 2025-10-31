@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "EjemploOpcionCorrecta",
+            "request": "launch",
+            "mainClass": "Unidad2.EjemploOpcionCorrecta",
+            "projectName": "PROGRAMACION_50d26b5a"
+        },
+        {
+            "type": "java",
+            "name": "EjemploTriangulo2",
+            "request": "launch",
+            "mainClass": "Unidad2.EjemploTriangulo2",
+            "projectName": "PROGRAMACION_50d26b5a"
+        },
+        {
+            "type": "java",
             "name": "Ejercicio12",
             "request": "launch",
             "mainClass": "Unidad2.Ejercicios_Practicas.Ejercicio12",

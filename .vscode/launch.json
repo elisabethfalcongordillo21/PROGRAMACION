@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Ejercicio12",
+            "request": "launch",
+            "mainClass": "Unidad2.Ejercicios_Practicas.Ejercicio12",
+            "projectName": "PROGRAMACION_50d26b5a"
+        },
+        {
+            "type": "java",
             "name": "Ejercicio13",
             "request": "launch",
             "mainClass": "Unidad2.Ejercicios_Practicas.Ejercicio13",

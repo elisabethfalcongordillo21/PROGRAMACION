@@ -72,6 +72,7 @@ public class Ejercicio11 {
             break;
             default:
                     System.out.println("Número de mes inválido");
+                    teclado.close();
                 return;
         }
        if (numMes> mesActual) {

@@ -68,5 +68,5 @@ public class Ejercicio12 {
         else {
             System.out.println("Hay empate tecnico chavalin"); }
         }
-
+       
     }

@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Ejercicio1",
+            "request": "launch",
+            "mainClass": "Unidad2.Ejercicios_Practicas.Ejercicio1",
+            "projectName": "PROGRAMACION_be373e29"
+        },
+        {
+            "type": "java",
+            "name": "Problemapizza",
+            "request": "launch",
+            "mainClass": "Unidad2.Ejercicios_Practicas.Problemapizza",
+            "projectName": "PROGRAMACION_be373e29"
+        },
+        {
+            "type": "java",
             "name": "EjemploOpcionCorrecta",
             "request": "launch",
             "mainClass": "Unidad2.EjemploOpcionCorrecta",

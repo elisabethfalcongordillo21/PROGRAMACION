@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "BuscaMinas",
+            "request": "launch",
+            "mainClass": "Unidad2.Ejercicios_Practicas.BuscaMinas",
+            "projectName": "PROGRAMACION_be373e29"
+        },
+        {
+            "type": "java",
+            "name": "EjemploArrays",
+            "request": "launch",
+            "mainClass": "Unidad2.Ejercicios_Practicas.EjemploArrays",
+            "projectName": "PROGRAMACION_be373e29"
+        },
+        {
+            "type": "java",
             "name": "Ejercicio1",
             "request": "launch",
             "mainClass": "Unidad2.Ejercicios_Practicas.Ejercicio1",

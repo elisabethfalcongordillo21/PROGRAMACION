@@ -44,7 +44,8 @@ public class Ejercicio12 {
             //gana jugador 2
             System.out.println("Gana el jugador 2");
         }
-        if ((jugador1_dado1==jugador1_dado2&&jugador1_dado2!=jugador1_dado3) || (jugador1_dado1==jugador1_dado3 && jugador1_dado3!= jugador1_dado2) || (jugador1_dado1!=jugador1_dado2&&jugador1_dado2==jugador1_dado3)) {
+
+        else if ((jugador1_dado1==jugador1_dado2&&jugador1_dado2!=jugador1_dado3) || (jugador1_dado1==jugador1_dado3 && jugador1_dado3!= jugador1_dado2) || (jugador1_dado1!=jugador1_dado2&&jugador1_dado2==jugador1_dado3)) {
             //ha sacado pares
             if ((jugador2_dado1==jugador2_dado2&&jugador2_dado2!=jugador2_dado3) || (jugador2_dado1==jugador2_dado3 && jugador2_dado3!= jugador2_dado2) || (jugador2_dado1!=jugador2_dado2&&jugador2_dado2==jugador2_dado3)) {
                 //comparar 
@@ -60,12 +61,12 @@ public class Ejercicio12 {
         }
         
 
-        if (suma1>suma2) {
+        else if (suma1>suma2) {
             System.out.println("Gana el jugador 1");
         }else if (suma1<suma2){
             System.out.println("Gana jugador 2");}
         else {
             System.out.println("Hay empate tecnico chavalin"); }
         }
-
+       
     }

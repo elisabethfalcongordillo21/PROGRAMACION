@@ -6,6 +6,7 @@
     "configurations": [
         {
             "type": "java",
+
             "name": "HundirLaFlota",
             "request": "launch",
             "mainClass": "Unidad2.Ejercicios_Bucles.HundirLaFlota",
@@ -24,6 +25,54 @@
             "request": "launch",
             "mainClass": "Unidad2.Ejercicios_Practicas.Ejercicio9",
             "projectName": "PROGRAMACION_9e8d4953"
+
+            "name": "BuscaMinas",
+            "request": "launch",
+            "mainClass": "Unidad2.Ejercicios_Practicas.BuscaMinas",
+            "projectName": "PROGRAMACION_be373e29"
+        },
+        {
+            "type": "java",
+            "name": "EjemploArrays",
+            "request": "launch",
+            "mainClass": "Unidad2.Ejercicios_Practicas.EjemploArrays",
+            "projectName": "PROGRAMACION_be373e29"
+        },
+        {
+            "type": "java",
+            "name": "Ejercicio1",
+            "request": "launch",
+            "mainClass": "Unidad2.Ejercicios_Practicas.Ejercicio1",
+            "projectName": "PROGRAMACION_be373e29"
+        },
+        {
+            "type": "java",
+            "name": "Problemapizza",
+            "request": "launch",
+            "mainClass": "Unidad2.Ejercicios_Practicas.Problemapizza",
+            "projectName": "PROGRAMACION_be373e29"
+        },
+        {
+            "type": "java",
+            "name": "EjemploOpcionCorrecta",
+            "request": "launch",
+            "mainClass": "Unidad2.EjemploOpcionCorrecta",
+            "projectName": "PROGRAMACION_50d26b5a"
+        },
+        {
+            "type": "java",
+            "name": "EjemploTriangulo2",
+            "request": "launch",
+            "mainClass": "Unidad2.EjemploTriangulo2",
+            "projectName": "PROGRAMACION_50d26b5a"
+        },
+        {
+            "type": "java",
+            "name": "Ejercicio12",
+            "request": "launch",
+            "mainClass": "Unidad2.Ejercicios_Practicas.Ejercicio12",
+            "projectName": "PROGRAMACION_50d26b5a"
+
         },
         {
             "type": "java",

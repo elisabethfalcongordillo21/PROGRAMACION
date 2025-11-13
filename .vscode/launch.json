@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "HundirLaFlota",
+            "request": "launch",
+            "mainClass": "Unidad2.Ejercicios_Bucles.HundirLaFlota",
+            "projectName": "PROGRAMACION_9e8d4953"
+        },
+        {
+            "type": "java",
+            "name": "Tragaperras",
+            "request": "launch",
+            "mainClass": "Unidad2.Ejercicios_Bucles.Tragaperras",
+            "projectName": "PROGRAMACION_9e8d4953"
+        },
+        {
+            "type": "java",
+            "name": "Ejercicio9",
+            "request": "launch",
+            "mainClass": "Unidad2.Ejercicios_Practicas.Ejercicio9",
+            "projectName": "PROGRAMACION_9e8d4953"
+        },
+        {
+            "type": "java",
             "name": "Ejercicio13",
             "request": "launch",
             "mainClass": "Unidad2.Ejercicios_Practicas.Ejercicio13",

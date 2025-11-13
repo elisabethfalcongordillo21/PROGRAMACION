@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 public class Ejercicio9 {
     public static void main(String[] args) {
+       
         int base=12;
-        double precio=0;
+        float precio=0;
         int edad=0;
         float descuento=0;
         int numEntradas=0;
@@ -30,7 +31,7 @@ public class Ejercicio9 {
         if (tieneDiscapacidad)
             precio=0;    
         else if(diaSemana==3 &&  edad<25)
-            descuento=0;
+            descuento=0.20f;
         else if (edad>60 || esEstudiante && descuento==0) {
             descuento=0.15f;
         }

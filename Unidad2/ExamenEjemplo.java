@@ -121,7 +121,7 @@ public class ExamenEjemplo {
     for (int i = 0; i < listaNombresZ.length; i++) {
         
         if (listaNombresZ[i] !=null) {
-            
+            //si es nulo no se muestra
             System.out.println(listaNombresZ[i]);
         }
        

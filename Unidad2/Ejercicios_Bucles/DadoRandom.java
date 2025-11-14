@@ -11,10 +11,10 @@ public class DadoRandom {
         Random rand = new Random();
 
         // Pedir al usuario el número de dados y caras
-        System.out.print("¿Cuántos dados quieres lanzar? ");
+        System.out.print("¿Cuantos dados quieres lanzar? ");
         int numDados = teclado.nextInt();
 
-        System.out.print("¿Cuántas caras tiene cada dado? ");
+        System.out.print("¿Cuantas caras tiene cada dado? ");
         int numCaras = teclado.nextInt();
 
         int sumaTotal = 0;
@@ -45,9 +45,9 @@ public class DadoRandom {
 
         // Mostrar resultados
         System.out.println("Suma total: " + sumaTotal);
-        System.out.println("Críticos: " + criticos);
+        System.out.println("Criticos: " + criticos);
         if (tiradaEpica) {
-            System.out.println("¡Tirada épica! Todos los dados sacaron el mismo número.");
+            System.out.println("¡Tirada epica! Todos los dados sacaron el mismo número.");
         } else {
             System.out.println("No es una tirada épica.");
         }

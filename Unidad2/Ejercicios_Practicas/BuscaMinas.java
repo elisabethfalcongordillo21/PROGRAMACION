@@ -37,7 +37,7 @@ public class BuscaMinas {
                 {
                     //Comprobamos si las coordenadas estan dentro del mapa 
                     if (i >= 0 && i<=2 && j>=0 && j<=2) 
-                    
+
                     if (mapaBombas[i][j]==1) {cantBombas++;
                 }
              }
@@ -45,11 +45,6 @@ public class BuscaMinas {
 
         }
         System.out.println( "Cerca de esa posicion (" + posx + "," + posy + ") hay" + cantBombas + "bombas");
-
-
-
-
-
 
         teclado.close();
 

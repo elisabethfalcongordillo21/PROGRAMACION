@@ -47,7 +47,7 @@ public class ExamenActividades {
                 System.out.print("Tipo (acuática, deportiva, cultural): ");
                 tipo = teclado.next().toLowerCase();
             } while (
-                !tipo.equals("acuática") &&
+                !tipo.equals("acuatica") &&
                 !tipo.equals("deportiva") &&
                 !tipo.equals("cultural")
             );
@@ -60,12 +60,12 @@ public class ExamenActividades {
 
             // Validar dificultad
             do {
-                System.out.print("Dificultad (fácil, medio, difícil): ");
+                System.out.print("Dificultad (facil, medio, dificil): ");
                 dificultad = teclado.next().toLowerCase();
             } while (
-                !dificultad.equals("fácil") &&
+                !dificultad.equals("facil") &&
                 !dificultad.equals("medio") &&
-                !dificultad.equals("difícil")
+                !dificultad.equals("dificil")
             );
 
             teclado.nextLine(); // limpiar buffer
@@ -80,18 +80,18 @@ public class ExamenActividades {
             // -----------------------------------------------------
             // 2. Contar por dificultad
             // -----------------------------------------------------
-            if (dificultad.equals("fácil")) contFacil++;
+            if (dificultad.equals("facil")) contFacil++;
             else if (dificultad.equals("medio")) contMedio++;
             else contDificil++;
 
             // -----------------------------------------------------
             // 3. Duración >4 y tipo acuática/deportiva O ubic. Leon
             // -----------------------------------------------------
-            if ((duracion > 4 && (tipo.equals("acuática") || tipo.equals("deportiva")))
+            if ((duracion > 4 && (tipo.equals("acuatica") || tipo.equals("deportiva")))
                 || ubicacion.equalsIgnoreCase("leon")) {
 
                 System.out.println(">> Actividad especial:");
-                System.out.println("Nombre: " + nombre + " | Ubicación: " + ubicacion);
+                System.out.println("Nombre: " + nombre + " | Ubicacion: " + ubicacion);
             }
 
             // -----------------------------------------------------
@@ -109,7 +109,7 @@ public class ExamenActividades {
 
                 // Actividad de mayor dificultad
                 int nivelActual = 0;
-                if (dificultad.equals("fácil")) nivelActual = 1;
+                if (dificultad.equals("facil")) nivelActual = 1;
                 else if (dificultad.equals("medio")) nivelActual = 2;
                 else nivelActual = 3;
 

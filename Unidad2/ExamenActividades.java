@@ -23,7 +23,7 @@ public class ExamenActividades {
         int minDuracion = Integer.MAX_VALUE;
         String nombreMinDuracion = "";
         String nombreMayorDificultad = "";
-        int nivelMax = -1; // Fácil=1, Medio=2, Difícil=3
+        int nivelMax = 0; // Fácil=1, Medio=2, Difícil=3
 
         // Leemos cantidad
         System.out.print("¿Cuántas actividades vas a introducir?: ");

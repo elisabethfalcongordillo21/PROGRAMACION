@@ -14,7 +14,7 @@ public class PruebasObjetos {
         //"new" seguida por el nombre de la clase y ()
         //esto llama al constructor por defecto.
         Personaje fran = new Personaje();
-        Personaje maria = new Personaje("Maria",95,0,50);
+        Personaje maria = new Personaje("Maria",95,0,50,Personaje.Corta_Distancia);
 
         fran.setNombre("Francisco");
         fran.setVida(80);

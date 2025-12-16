@@ -1,31 +1,32 @@
 package Unidad3;
 
 public class Arma {
-    
-   public static final int Larga_Distancia=1;
-   public static final int Corta_Distancia=2;
-   public  static final int Melee=3;
-   public static final int Explosiva=4;
- 
-   private String nombre;
-   private double peso;
-   private int tipo;
-   private int danio;
-   private boolean estaEquipada;
 
-   public Arma(){
+    public static final int LARGA_DISTANCIA = 1;
+    public static final int CORTA_DISTANCIA = 2;
+    public static final int MELEE = 3;
+    public static final int EXPLOSIVA = 4;
 
-    this.nombre = "Pistola";
-      this.peso = 2;
-        this.tipo = this.Corta_Distancia;
+    private String nombre;
+    private double peso;
+    private int tipo;
+    private int danio;
+    private boolean estaEquipada;
+
+    public Arma() {
+        this.nombre = "Pistola";
+        this.peso = 2;
+        this.tipo = this.CORTA_DISTANCIA;
         this.danio = 20;
+        this.estaEquipada = false;
     }
 
-    public Arma(String nombre, double peso, int tipo, int danio) {
+    public Arma(String nombre, double peso, int tipo, int danio, boolean estaEquipada) {
         this.nombre = nombre;
         this.peso = peso;
         this.tipo = tipo;
         this.danio = danio;
+        this.estaEquipada = estaEquipada;
     }
 
     public String getNombre() {
@@ -60,8 +61,7 @@ public class Arma {
         this.danio = danio;
     }
 
-    public  boolean getEstaEquipada()
-    {
+    public boolean getEstaEquipada() {
         return this.estaEquipada;
     }
 
@@ -69,16 +69,32 @@ public class Arma {
         this.estaEquipada = estaEquipada;
     }
 
-    @Override
-    public String toString() {
-        // TODO cambiar y mostrar los datos del arma
-        return super.toString();
+    private String tipoDescripcion() {
+        switch (this.tipo) {
+            case LARGA_DISTANCIA:
+                return "Larga distancia";
+            case CORTA_DISTANCIA:
+                return "Corta distancia";
+            case MELEE:
+                return "Melee";
+            case EXPLOSIVA:
+                return "Explosiva";
+            default:
+                return "Desconocido";
+        }
     }
 
-    
-
-   
-
-
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Arma {");
+        sb.append("nombre='").append(this.nombre).append('\'');
+        sb.append(", peso=").append(this.peso);
+        sb.append(", tipo=").append(tipoDescripcion()).append(" (" + this.tipo + ")");
+        sb.append(", danio=").append(this.danio);
+        sb.append(", equipada=").append(this.estaEquipada);
+        sb.append("}");
+        return sb.toString();
+    }
 
 }

@@ -25,8 +25,7 @@ CREATE TABLE IF NOT EXISTS `peliculas_marcadiz`.`pelicula` (
   `clasificacion` INT NULL,
   `sinopsis` VARCHAR(505) NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB
-COMMENT = '		';
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -42,28 +41,24 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `peliculas_marcadiz`.`pelicula_has_actor`
+-- Table `peliculas_marcadiz`.`actor_has_pelicula`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `peliculas_marcadiz`.`pelicula_has_actor` (
-  `pelicula_id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `peliculas_marcadiz`.`actor_has_pelicula` (
   `actor_id` INT NOT NULL,
+  `pelicula_id` INT NOT NULL,
   `personaje` VARCHAR(45) NULL,
-  PRIMARY KEY (`pelicula_id`, `actor_id`),
-  CONSTRAINT `fk_pelicula_has_actor_pelicula`
-    FOREIGN KEY (`pelicula_id`)
-    REFERENCES `peliculas_marcadiz`.`pelicula` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_pelicula_has_actor_actor1`
+  PRIMARY KEY (`actor_id`, `pelicula_id`),
+  CONSTRAINT `fk_actor_has_pelicula_actor`
     FOREIGN KEY (`actor_id`)
     REFERENCES `peliculas_marcadiz`.`actor` (`id`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_actor_has_pelicula_pelicula1`
+    FOREIGN KEY (`pelicula_id`)
+    REFERENCES `peliculas_marcadiz`.`pelicula` (`id`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_pelicula_has_actor_actor1_idx` ON `peliculas_marcadiz`.`pelicula_has_actor` (`actor_id` ASC) VISIBLE;
-
-CREATE INDEX `fk_pelicula_has_actor_pelicula_idx` ON `peliculas_marcadiz`.`pelicula_has_actor` (`pelicula_id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -97,11 +92,6 @@ CREATE TABLE IF NOT EXISTS `peliculas_marcadiz`.`pelicula_has_cine` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_pelicula_has_cine_cine1_idx` ON `peliculas_marcadiz`.`pelicula_has_cine` (`cine_id` ASC) VISIBLE;
-
-CREATE INDEX `fk_pelicula_has_cine_pelicula1_idx` ON `peliculas_marcadiz`.`pelicula_has_cine` (`pelicula_id` ASC) VISIBLE;
-
-
 -- -----------------------------------------------------
 -- Table `peliculas_marcadiz`.`sala`
 -- -----------------------------------------------------
@@ -118,9 +108,6 @@ CREATE TABLE IF NOT EXISTS `peliculas_marcadiz`.`sala` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_sala_cine1_idx` ON `peliculas_marcadiz`.`sala` (`cine_id` ASC) VISIBLE;
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

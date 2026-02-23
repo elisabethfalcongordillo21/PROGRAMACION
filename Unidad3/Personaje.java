@@ -18,6 +18,7 @@ public class Personaje {
     public static final int MAGO = 2;
     public static final int FRANCOTIRADOR = 3;
     public static final int LADRON = 4;
+    public static final int CORTA_DISTANCIA = 0;
     /************************
      * VARIABLES MIEMBRO *
      *************************/

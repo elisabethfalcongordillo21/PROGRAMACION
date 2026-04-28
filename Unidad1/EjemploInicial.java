@@ -5,7 +5,7 @@ public class EjemploInicial {
     public static void main(String args []){
         
         /**
-        * 
+        * hokaaaaa
         * 
         */
 

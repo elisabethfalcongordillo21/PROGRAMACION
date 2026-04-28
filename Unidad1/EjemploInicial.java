@@ -6,7 +6,7 @@ public class EjemploInicial {
         
         /**
         * hokaaaaa
-        * ghgghhghghghg
+        * ghgghhghghgh
         */
 
         /*

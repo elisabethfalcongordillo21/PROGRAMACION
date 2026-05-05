@@ -102,7 +102,7 @@ public class PeliculasDAO implements AutoCloseable {
 
             // Creamos la sentencia
             Statement stmt = this.con.createStatement();
-
+  
             // Ejecutamos y guardamos los datos en un resultset
             rs = stmt.executeQuery(query);
 

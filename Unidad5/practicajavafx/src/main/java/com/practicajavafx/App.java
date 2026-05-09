@@ -1,5 +1,6 @@
 package com.practicajavafx;
 
+import com.practicajavafx.model.ProductoDAO;
 import com.practicajavafx.model.ProductoDO;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -8,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import java.util.ArrayList;
+import java.util.List;
 
 public class App extends Application {
 
@@ -90,6 +92,20 @@ public class App extends Application {
 
             listaProductos.add(p);
 
+            //llamamos al DAO para insertar en la BD
+
+            ProductoDAO dao = new ProductoDAO();
+            int resultado = dao.insertar(p);
+
+            //si el resultado es -1 es que algo fue mal 
+            if (resultado == -1){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Error al guardar en la BD.");
+                alert.showAndWait();
+            }
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Guardado");
             alert.setHeaderText(null);
@@ -100,9 +116,16 @@ public class App extends Application {
         // evento de actualizar
         btnActualizar.setOnAction(e -> {
             txtListado.clear();
-            for (ProductoDO p : listaProductos) {
+            
+            //llamamos al DAO para obtener los productos de la BD
+            ProductoDAO dao = new ProductoDAO();
+            List<ProductoDO> productos = dao.listar();
+            
+            for (ProductoDO p : productos) {
                 txtListado.appendText(p.toString() + "\n");
             }
+
+
         });
 
         // scene

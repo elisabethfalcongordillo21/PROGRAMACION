@@ -60,7 +60,10 @@ public class ProductoDO {
 
     @Override
     public String toString() {
-        return nombre + " | " + String.format("%.2f", precio) + " € | " 
-             + descripcion + " | " + tipo + " | " + disponible;
-    }  
+    return "Nombre: " + nombre 
+        + " | Precio: " + String.format("%.2f", precio) + " €"
+        + " | Tipo: " + tipo 
+        + " | Descripción: " + descripcion
+        + " | Disponible: " + (disponible ? "Sí" : "No");
+    }
 }

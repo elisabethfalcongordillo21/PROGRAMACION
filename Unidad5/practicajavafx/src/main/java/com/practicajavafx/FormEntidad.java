@@ -51,6 +51,18 @@ public class FormEntidad extends GridPane {
     btnLimpiar = new Button("Limpiar");
     lblResultado = new Label("");
 
+    // tamaño de los controles
+    txtNombre.setPrefWidth(300);
+    txtDescripcion.setPrefWidth(300);
+    sldPrecio.setPrefWidth(300);
+    cmbTipo.setPrefWidth(300);
+
+    // botones con color
+    btnMostrar.setStyle("-fx-background-color: #69baf09a; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8 20 8 20;");
+    btnLimpiar.setStyle("-fx-background-color: #69baf09a; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8 20 8 20;");
+
+
+
     //configurar el grid 
     this.setHgap(10);
     this.setVgap(8);
@@ -67,10 +79,13 @@ public class FormEntidad extends GridPane {
     this.add(cmbTipo, 1, 3);
     this.add(lblDisponible,  0, 4);
     this.add(chkDisponible, 1, 4);
-    this.add(btnMostrar, 0, 5);
-    this.add(btnLimpiar, 1, 5);
-    this.add(lblResultado, 0, 6,2,1);
     this.add(lblPrecioValor, 2, 1);
+   
+    Separator separador = new Separator();
+    this.add(separador, 0, 5, 2, 1);
+    this.add(btnMostrar, 0, 6);
+    this.add(btnLimpiar, 1, 6);
+    this.add(lblResultado, 0, 7, 2, 1);
 
     //eventos botones
     btnMostrar.setOnAction(e->{mostrarDatos();});

@@ -7,7 +7,16 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +44,9 @@ public class App extends Application {
         // pestaña 2
         TextArea txtListado = new TextArea();
         txtListado.setEditable(false);
+        VBox.setVgrow(txtListado, Priority.ALWAYS);
+        txtListado.setMaxHeight(Double.MAX_VALUE);
+        txtListado.setMaxWidth(Double.MAX_VALUE);
         Button btnActualizar = new Button("Actualizar");
         javafx.scene.layout.VBox vboxListado = new javafx.scene.layout.VBox(10, txtListado, btnActualizar);
         vboxListado.setPadding(new javafx.geometry.Insets(20));
@@ -50,8 +62,10 @@ public class App extends Application {
         MenuItem miSalir  = new MenuItem("Salir");
         MenuItem miListado = new MenuItem("Listado");
         MenuItem miAcerca  = new MenuItem("Acerca de...");
-
-        mArchivo.getItems().addAll(miNuevo, miSalir);
+        MenuItem miExportar = new MenuItem("Exportar listado...");
+        MenuItem miImportar = new MenuItem("Importar listado...");
+        
+        mArchivo.getItems().addAll(miNuevo, miExportar,miImportar, miSalir);
         mVer.getItems().add(miListado);
         mAyuda.getItems().add(miAcerca);
         menuBar.getMenus().addAll(mArchivo, mVer, mAyuda);
@@ -79,6 +93,103 @@ public class App extends Application {
             alert.setHeaderText(null);
             alert.setContentText("Aplicación desarrollada por Elisabeth \nGestión de Productos");
             alert.showAndWait();
+        });
+
+        miExportar.setOnAction(e->{
+            //abrimos el dialogo para guardar el fichero
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Exportar listado");
+            //filtramos para que solo muestre ficheros .txt
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Ficheros de texto", "*.txt"));
+
+            File fichero = fileChooser.showSaveDialog(stage);
+
+            if(fichero != null){
+                try(BufferedWriter bw = new BufferedWriter(new FileWriter(fichero))) {
+                  
+                    ProductoDAO dao = new ProductoDAO();
+                    List<ProductoDO> productos = dao.listar();
+
+                    for (ProductoDO p : productos) {
+                        
+                        //una linea por producto separado por ;
+                        bw.write(p.getNombre()+ " ; " 
+                        + p.getPrecio() + " ; " 
+                        + p.getDescripcion() + " ; " 
+                        + p.getTipo() + " ; " 
+                        + p.isDisponible());
+                         bw.newLine();
+                    }
+                    
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Exportado");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Exportado: " + productos.size() + " entidades.");
+                    alert.showAndWait();
+               
+               
+               
+               
+                } catch (Exception ex) {
+                    System.out.println("Error al exportar: "+ ex.getMessage());
+                }
+            }
+
+        });
+
+        miImportar.setOnAction(e-> {
+            //abrimos el dialogo para abrir el fichero
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Importar listado");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Ficheros de texto", "*.txt"));
+
+            File fichero = fileChooser.showOpenDialog(stage);
+
+            if (fichero != null) {
+                try (BufferedReader br = new BufferedReader(new FileReader(fichero))){
+                    
+                    String linea;
+                    int contador=0;
+                    while ((linea = br.readLine()) !=null) {
+                        // Buscamos la posición de cada ;
+                        int pos1 = linea.indexOf(";");
+                        int pos2 = linea.indexOf(";", pos1 + 1);
+                        int pos3 = linea.indexOf(";", pos2 + 1);
+                        int pos4 = linea.indexOf(";", pos3 + 1);
+
+                        // Extraemos cada campo entre los ;
+                        String nombre = linea.substring(0, pos1);
+                        String precio = linea.substring(pos1 + 1, pos2);
+                        String descripcion = linea.substring(pos2 + 1, pos3);
+                        String tipo = linea.substring(pos3 + 1, pos4);
+                        String disponible = linea.substring(pos4 + 1);
+                    
+                       // Creamos el objeto
+                        ProductoDO p = new ProductoDO();
+                        p.setNombre(nombre);
+                        p.setPrecio(Double.parseDouble(precio));
+                        p.setDescripcion(descripcion);
+                        p.setTipo(tipo);
+                        p.setDisponible(Boolean.parseBoolean(disponible));
+
+                        listaProductos.add(p);
+                        contador++; 
+                    }
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Importado");
+                alert.setHeaderText(null);
+                alert.setContentText("Importado: " + contador + " entidades.");
+                alert.showAndWait();
+
+                } catch (Exception ex) {
+
+                    System.out.println("Error al importar: " + ex.getMessage());
+
+                }
+                
+            }
+
+
         });
 
         // evento de guardar
@@ -129,7 +240,7 @@ public class App extends Application {
         });
 
         // scene
-        Scene scene = new Scene(root, 420, 380);
+        Scene scene = new Scene(root, 600, 450);
         stage.setTitle("Gestión de Productos");
         stage.setScene(scene);
         stage.show();

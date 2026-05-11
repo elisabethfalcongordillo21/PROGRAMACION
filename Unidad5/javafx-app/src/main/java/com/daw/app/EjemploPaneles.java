@@ -43,7 +43,8 @@ public class EjemploPaneles extends Application {
         BorderPane pPrincipal = new BorderPane();
         PeliculaPanel pPelicula = new PeliculaPanel();
         FicherosPanel pFicheros = new FicherosPanel();
-       
+        
+        
         TabPane tPane = new TabPane();
 
         Tab tPelicula = new Tab("Crear Pelicula");
@@ -52,6 +53,7 @@ public class EjemploPaneles extends Application {
 
         tPelicula.setClosable(false);
         tFicheros.setClosable(false);
+        
         tPane.getTabs().addAll(tPelicula, tFicheros, tBot);
 
         // Metemos el panelPelicula en la primera pestaña

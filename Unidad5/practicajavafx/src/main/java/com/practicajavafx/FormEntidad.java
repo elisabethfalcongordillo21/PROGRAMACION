@@ -41,8 +41,9 @@ public class FormEntidad extends GridPane {
     lblPrecioValor = new Label("0.00 €");
 
     txtNombre = new TextField();
-    sldPrecio= new Slider(0,1000,0);
     txtDescripcion= new TextField();
+    
+    sldPrecio= new Slider(0,1000,0);
     cmbTipo = new ComboBox<String>();
     cmbTipo.getItems().addAll("fisico","digital");
     chkDisponible= new CheckBox();
@@ -79,6 +80,9 @@ public class FormEntidad extends GridPane {
     this.add(lblDisponible,  0, 4);
     this.add(chkDisponible, 1, 4);
     this.add(lblPrecioValor, 2, 1);
+
+
+   //separator 
    
     Separator separador = new Separator();
     this.add(separador, 0, 5, 2, 1);

@@ -30,7 +30,9 @@ public class ConexionBD {
 
         //intentamos conectarnos y devolvemos la conexion
         try{
+            
             return DriverManager.getConnection(url, user, password);
+
         }catch(Exception e){
             System.out.println("Error al conectar con la BD: "+ e.getMessage());
             return null;

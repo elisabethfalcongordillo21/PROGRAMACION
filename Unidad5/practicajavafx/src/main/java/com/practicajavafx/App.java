@@ -11,6 +11,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import panels.BotPanel;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -32,9 +33,11 @@ public class App extends Application {
         TabPane tabPane = new TabPane();
         Tab tabFormulario = new Tab("Formulario");
         Tab tabListado    = new Tab("Listado");
+        Tab tabIa = new Tab("Agente IA");
         tabFormulario.setClosable(false);
         tabListado.setClosable(false);
-        tabPane.getTabs().addAll(tabFormulario, tabListado);
+        tabIa.setClosable(false);
+        tabPane.getTabs().addAll(tabFormulario, tabListado,tabIa);
 
         // pestaña 1
         FormEntidad formulario = new FormEntidad();
@@ -52,18 +55,24 @@ public class App extends Application {
         vboxListado.setPadding(new javafx.geometry.Insets(20));
         tabListado.setContent(vboxListado);
 
+        // pestaña 3
+        BotPanel Iapanel = new BotPanel();
+        tabIa.setContent(Iapanel);
+
         // barra del menu 
         MenuBar menuBar = new MenuBar();
         Menu mArchivo = new Menu("Archivo");
         Menu mVer     = new Menu("Ver");
         Menu mAyuda   = new Menu("Ayuda");
 
-        MenuItem miNuevo  = new MenuItem("Nueva producto");
+        MenuItem miNuevo  = new MenuItem("Nuevo producto");
         MenuItem miSalir  = new MenuItem("Salir");
         MenuItem miListado = new MenuItem("Listado");
         MenuItem miAcerca  = new MenuItem("Acerca de...");
         MenuItem miExportar = new MenuItem("Exportar listado...");
         MenuItem miImportar = new MenuItem("Importar listado...");
+        MenuItem miIa = new MenuItem("Agente IA");
+
         
         mArchivo.getItems().addAll(miNuevo, miExportar,miImportar, miSalir);
         mVer.getItems().add(miListado);
@@ -74,6 +83,7 @@ public class App extends Application {
         BorderPane root = new BorderPane();
         root.setTop(menuBar);
         root.setCenter(tabPane);
+
 
         // eventos del menu
         miNuevo.setOnAction(e -> {
@@ -86,6 +96,8 @@ public class App extends Application {
         miListado.setOnAction(e -> {
             tabPane.getSelectionModel().select(tabListado);
         });
+
+        miIa.setOnAction(e -> tabPane.getSelectionModel().select(tabIa));
 
         miAcerca.setOnAction(e -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -175,6 +187,7 @@ public class App extends Application {
                         listaProductos.add(p);
                         contador++; 
                     }
+                    
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Importado");
                 alert.setHeaderText(null);

@@ -62,7 +62,6 @@ public class FormEntidad extends GridPane {
     btnLimpiar.setStyle("-fx-background-color: #69baf09a; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8 20 8 20;");
 
 
-
     //configurar el grid 
     this.setHgap(10);
     this.setVgap(8);

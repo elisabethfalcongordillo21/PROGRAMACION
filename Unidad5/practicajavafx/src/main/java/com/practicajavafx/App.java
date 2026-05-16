@@ -51,7 +51,7 @@ public class App extends Application {
         txtListado.setMaxHeight(Double.MAX_VALUE);
         txtListado.setMaxWidth(Double.MAX_VALUE);
         Button btnActualizar = new Button("Actualizar");
-        javafx.scene.layout.VBox vboxListado = new javafx.scene.layout.VBox(10, txtListado, btnActualizar);
+        VBox vboxListado = new VBox(10, txtListado, btnActualizar);
         vboxListado.setPadding(new javafx.geometry.Insets(20));
         tabListado.setContent(vboxListado);
 

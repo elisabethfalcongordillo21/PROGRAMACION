@@ -19,10 +19,10 @@ public class ClienteDO {
     }
 
 
-    public ClienteDO(String dni, String nombre, String telefono, String tipo, String estatus) {
-      
-        this(0, dni, nombre, telefono, tipo, estatus);
+
+    public ClienteDO() {
     }
+    
 
 
     public int getId_cliente() {
@@ -76,6 +76,11 @@ public class ClienteDO {
 
     @Override
     public String toString() {
-        return id_cliente + " | " + nombre + " | " + tipo + " | " + estatus;
-    }
+        return "ID: " + id_cliente
+                + " | DNI: " + dni
+                + " | Nombre: " + nombre
+                + " | Teléfono: " + telefono
+                + " | Tipo: " + tipo
+                + " | Estatus: " + estatus;
+}
 }

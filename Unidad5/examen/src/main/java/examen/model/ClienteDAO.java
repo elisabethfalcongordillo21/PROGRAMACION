@@ -11,7 +11,7 @@ import java.util.List;
 public class ClienteDAO {
 
     // ── INSERT ────────────────────────────────────────────────────────
-    public void insertar(ClienteDO c)  {
+    public int insertar(ClienteDO c)  {
         String sql = "INSERT INTO cliente (dni,nombre,telefono,tipo,estatus) VALUES (?,?,?,?,?)";
         try (Connection con = ConexionBD.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -92,7 +92,7 @@ public class ClienteDAO {
     }
 
     // ── DELETE ────────────────────────────────────────────────────────
-    public void eliminar(int id)  {
+    public int eliminar(int id)  {
         String sql = "DELETE FROM cliente WHERE id_cliente = ?";
         try (Connection con = ConexionBD.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {

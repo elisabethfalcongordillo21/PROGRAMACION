@@ -10,7 +10,7 @@ public class ConexionBD {
     public static Connection getConexion(){
 
         //cargamos todas las variables
-        Dotenv dotenv = Dotenv.configure().directory("C:/Users/elisa/Desktop/PROGRAMACION/Unidad5/practicajavafx")
+        Dotenv dotenv = Dotenv.configure().directory(".")
     .load();
 
         //asigno las variables del fichero .env

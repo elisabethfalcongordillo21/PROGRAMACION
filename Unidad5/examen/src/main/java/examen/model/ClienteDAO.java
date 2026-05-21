@@ -20,11 +20,12 @@ public class ClienteDAO {
             ps.setString(3, c.getTelefono());
             ps.setString(4, c.getTipo());
             ps.setString(5, c.getEstatus());
-            ps.executeUpdate();
+            return ps.executeUpdate();
         }
         catch (SQLException e) {
              System.out.println("Error al insertar cliente : " + e.getMessage());
-        }
+            return -1;
+            }
     }
 
     // ── SELECT ALL ────────────────────────────────────────────────────
@@ -97,11 +98,12 @@ public class ClienteDAO {
         try (Connection con = ConexionBD.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, id);
-            ps.executeUpdate();
+            return ps.executeUpdate();
         }
         catch (SQLException e) {
              System.out.println("Error al eliminar : " + e.getMessage());
-        }
+            return -1;
+            }
     }
 
     // ── UPDATE ────────────────────────────────────────────────────────

@@ -1,24 +1,15 @@
 package panels;
 
-
-
+import examen.model.ClienteDAO;
+import examen.model.ClienteDO;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import java.util.List;
 
-import java.sql.ResultSet;
-
-import examen.model.ClienteDAO;
-import examen.model.ClienteDO;
-
-/**
- * Ventana emergente con ChoiceBox (no ComboBox) para eliminar un cliente.
- * El ChoiceBox se carga desde BD con los ids de los clientes.
- * (Examen Rec Junio 23/24 - opción submenú Eliminar)
- */
 public class VentanaEliminar extends Stage {
 
     private ChoiceBox<ClienteDO> chbClientes;
@@ -29,6 +20,7 @@ public class VentanaEliminar extends Stage {
         cargarClientes();
 
         Button btnEliminar = new Button("Eliminar");
+        btnEliminar.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 13px;");
 
         VBox vBox = new VBox(15,
                 new Label("Selecciona el cliente a eliminar:"),
@@ -38,6 +30,7 @@ public class VentanaEliminar extends Stage {
 
         btnEliminar.setOnAction(e -> {
             ClienteDO seleccionado = chbClientes.getValue();
+
             if (seleccionado == null) {
                 Alert alerta = new Alert(Alert.AlertType.WARNING);
                 alerta.setHeaderText(null);
@@ -46,23 +39,21 @@ public class VentanaEliminar extends Stage {
                 return;
             }
 
-            try (ClienteDAO dao = new ClienteDAO()) {
-                int resultado = dao.eliminar(seleccionado.getId_cliente());
-                if (resultado == 1) {
-                    Alert ok = new Alert(Alert.AlertType.INFORMATION);
-                    ok.setHeaderText(null);
-                    ok.setContentText("Cliente eliminado correctamente.");
-                    ok.showAndWait();
-                    chbClientes.getItems().clear();
-                    cargarClientes();
-                } else {
-                    Alert error = new Alert(Alert.AlertType.ERROR);
-                    error.setHeaderText(null);
-                    error.setContentText("No se pudo eliminar el cliente.");
-                    error.showAndWait();
-                }
+            ClienteDAO dao = new ClienteDAO();
+            try {
+                dao.eliminar(seleccionado.getId_cliente());
+                Alert ok = new Alert(Alert.AlertType.INFORMATION);
+                ok.setHeaderText(null);
+                ok.setContentText("Cliente eliminado correctamente.");
+                ok.showAndWait();
+                chbClientes.getItems().clear();
+                cargarClientes();
             } catch (Exception ex) {
-                System.out.println("Error al eliminar: " + ex.getMessage());
+                Alert error = new Alert(Alert.AlertType.ERROR);
+                error.setHeaderText(null);
+                error.setContentText("No se pudo eliminar el cliente.");
+                error.showAndWait();
+                System.out.println("Error eliminar: " + ex.getMessage());
             }
         });
 
@@ -73,22 +64,15 @@ public class VentanaEliminar extends Stage {
         this.initOwner(padre);
     }
 
-    /**
-     * Carga los clientes de BD en el ChoiceBox usando ResultSet directamente.
-     */
     private void cargarClientes() {
-        try (ClienteDAO dao = new ClienteDAO();
-             ResultSet rs = dao.getClientes()) {
-
-            while (rs.next()) {
-                ClienteDO c = new ClienteDO();
-                c.setIdCliente(rs.getInt("id_cliente"));
-                c.setNombre(rs.getString("nombre"));
+        ClienteDAO dao = new ClienteDAO();
+        try {
+            List<ClienteDO> lista = dao.listar();
+            for (ClienteDO c : lista) {
                 chbClientes.getItems().add(c);
             }
-
         } catch (Exception e) {
-            System.out.println("Error al cargar clientes en ChoiceBox: " + e.getMessage());
+            System.out.println("Error al cargar clientes: " + e.getMessage());
         }
     }
 }

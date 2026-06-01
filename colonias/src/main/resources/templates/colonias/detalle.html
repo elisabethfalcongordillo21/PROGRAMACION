@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Colonia</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🌸 Detalle de Colonia</h1>
+
+    <!--
+        th:text="${colonia.campo} muestra cada atributo del objeto
+        que el controlador añadió con model.addAttribute("colonia", ...)
+    -->
+    <div class="detalle-card">
+        <div class="detalle-fila">
+            <span class="detalle-label">ID</span>
+            <span class="detalle-valor" th:text="${colonia.id}"></span>
+        </div>
+        <div class="detalle-fila">
+            <span class="detalle-label">Nombre</span>
+            <span class="detalle-valor" th:text="${colonia.nombre}"></span>
+        </div>
+        <div class="detalle-fila">
+            <span class="detalle-label">Marca</span>
+            <span class="detalle-valor" th:text="${colonia.marca}"></span>
+        </div>
+        <div class="detalle-fila">
+            <span class="detalle-label">Familia Olfativa</span>
+            <span class="detalle-valor" th:text="${colonia.familiaOlfativa}"></span>
+        </div>
+        <div class="detalle-fila">
+            <span class="detalle-label">Volumen</span>
+            <span class="detalle-valor" th:text="${colonia.volumenMl} + ' ml'"></span>
+        </div>
+        <div class="detalle-fila">
+            <span class="detalle-label">Precio</span>
+            <span class="detalle-valor" th:text="${#numbers.formatDecimal(colonia.precio,1,2)} + ' €'"></span>
+        </div>
+        <div class="detalle-fila">
+            <span class="detalle-label">Género</span>
+            <span class="detalle-valor" th:text="${colonia.genero}"></span>
+        </div>
+    </div>
+
+    <div class="botones">
+        <a th:href="@{/colonias/editar/{id}(id=${colonia.id})}" class="btn btn-editar">Editar</a>
+        <a th:href="@{/colonias}" class="btn btn-cancelar">← Volver al listado</a>
+    </div>
+</div>
+
+</body>
+</html>

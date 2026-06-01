@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}">Formulario Colonia</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+
+<div class="container">
+    <h1 th:text="${titulo}">Colonia</h1>
+
+    <!--
+        El formulario apunta a /colonias/nueva (POST) si es creación,
+        o a /colonias/editar/{id} (POST) si es edición.
+        th:action construye la URL dinámicamente según si el id existe.
+        th:object="${colonia}" vincula el objeto del modelo al formulario.
+    -->
+    <form th:action="${colonia.id == null}
+                        ? @{/colonias/nueva}
+                        : @{/colonias/editar/{id}(id=${colonia.id})}"
+          th:object="${colonia}"
+          method="post"
+          class="formulario">
+
+        <!-- NOMBRE -->
+        <div class="campo">
+            <label for="nombre">Nombre *</label>
+            <input type="text" id="nombre" th:field="*{nombre}" placeholder="Ej: Bleu de Chanel"/>
+            <!-- th:errors muestra los errores de validación del campo -->
+            <span class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+        </div>
+
+        <!-- MARCA -->
+        <div class="campo">
+            <label for="marca">Marca *</label>
+            <input type="text" id="marca" th:field="*{marca}" placeholder="Ej: Chanel"/>
+            <span class="error" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></span>
+        </div>
+
+        <!--
+            FAMILIA OLFATIVA - campo SELECT
+            th:field="*{familiaOlfativa}" enlaza el valor seleccionado con el objeto
+        -->
+        <div class="campo">
+            <label for="familiaOlfativa">Familia Olfativa *</label>
+            <select id="familiaOlfativa" th:field="*{familiaOlfativa}">
+                <option value="">-- Selecciona --</option>
+                <option value="floral">Floral</option>
+                <option value="oriental">Oriental</option>
+                <option value="amaderado">Amaderado</option>
+                <option value="fresco">Fresco</option>
+                <option value="cítrico">Cítrico</option>
+                <option value="acuático">Acuático</option>
+                <option value="gourmand">Gourmand</option>
+            </select>
+            <span class="error" th:if="${#fields.hasErrors('familiaOlfativa')}" th:errors="*{familiaOlfativa}"></span>
+        </div>
+
+        <!-- VOLUMEN -->
+        <div class="campo">
+            <label for="volumenMl">Volumen (ml) *</label>
+            <input type="number" id="volumenMl" th:field="*{volumenMl}" min="1" placeholder="Ej: 100"/>
+            <span class="error" th:if="${#fields.hasErrors('volumenMl')}" th:errors="*{volumenMl}"></span>
+        </div>
+
+        <!-- PRECIO -->
+        <div class="campo">
+            <label for="precio">Precio (€) *</label>
+            <input type="number" id="precio" th:field="*{precio}" step="0.01" min="0.01" placeholder="Ej: 89.90"/>
+            <span class="error" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></span>
+        </div>
+
+        <!--
+            GÉNERO - campos RADIO
+            th:field="*{genero}" en cada radio button gestiona cuál queda seleccionado
+        -->
+        <div class="campo">
+            <label>Género *</label>
+            <div class="radio-grupo">
+                <label class="radio-label">
+                    <input type="radio" th:field="*{genero}" value="hombre"/> Hombre
+                </label>
+                <label class="radio-label">
+                    <input type="radio" th:field="*{genero}" value="mujer"/> Mujer
+                </label>
+                <label class="radio-label">
+                    <input type="radio" th:field="*{genero}" value="unisex"/> Unisex
+                </label>
+            </div>
+            <span class="error" th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}"></span>
+        </div>
+
+        <!-- BOTONES -->
+        <div class="botones">
+            <button type="submit" class="btn btn-guardar">Guardar</button>
+            <a th:href="@{/colonias}" class="btn btn-cancelar">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

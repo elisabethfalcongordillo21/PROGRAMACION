@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Colonias - Listado</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🌸 Gestión de Colonias</h1>
+
+    <!-- ===== FORMULARIO DE FILTRADO Y ORDENACIÓN ===== -->
+    <!--
+        Se envía por GET a /colonias con parámetros:
+          nombre → texto de búsqueda
+          orden  → criterio de ordenación
+    -->
+    <form th:action="@{/colonias}" method="get" class="filtros">
+        <input type="text"
+               name="nombre"
+               th:value="${nombre}"
+               placeholder="Buscar por nombre..."/>
+
+        <select name="orden">
+            <option value="nombreAsc"  th:selected="${orden == 'nombreAsc'}">Nombre A-Z</option>
+            <option value="nombreDesc" th:selected="${orden == 'nombreDesc'}">Nombre Z-A</option>
+            <option value="precioAsc"  th:selected="${orden == 'precioAsc'}">Precio ↑</option>
+            <option value="precioDesc" th:selected="${orden == 'precioDesc'}">Precio ↓</option>
+        </select>
+
+        <button type="submit" class="btn btn-buscar">Filtrar</button>
+        <a th:href="@{/colonias}" class="btn btn-limpiar">Limpiar</a>
+    </form>
+
+    <div class="acciones-top">
+        <a th:href="@{/colonias/nueva}" class="btn btn-nuevo">+ Nueva Colonia</a>
+        <a th:href="@{/colonias/buscar}" class="btn btn-query">🔍 Búsqueda avanzada</a>
+    </div>
+
+    <!-- ===== TABLA DE COLONIAS ===== -->
+    <!--
+        th:each itera la lista "colonias" que el controlador
+        pone en el modelo con model.addAttribute("colonias", ...)
+    -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Marca</th>
+                <th>Familia Olfativa</th>
+                <th>Volumen (ml)</th>
+                <th>Precio (€)</th>
+                <th>Género</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="colonia : ${colonias}">
+                <!-- th:text muestra el valor del campo -->
+                <td th:text="${colonia.id}"></td>
+                <td th:text="${colonia.nombre}"></td>
+                <td th:text="${colonia.marca}"></td>
+                <td th:text="${colonia.familiaOlfativa}"></td>
+                <td th:text="${colonia.volumenMl}"></td>
+                <!-- Formatear precio con 2 decimales -->
+                <td th:text="${#numbers.formatDecimal(colonia.precio, 1, 2)}"></td>
+                <td th:text="${colonia.genero}"></td>
+                <td class="acciones">
+                    <!-- Ver detalle: /colonias/{id} -->
+                    <a th:href="@{/colonias/{id}(id=${colonia.id})}" class="btn btn-ver">Ver</a>
+                    <!-- Editar: /colonias/editar/{id} -->
+                    <a th:href="@{/colonias/editar/{id}(id=${colonia.id})}" class="btn btn-editar">Editar</a>
+                    <!-- Eliminar: /colonias/eliminar/{id} -->
+                    <a th:href="@{/colonias/eliminar/{id}(id=${colonia.id})}"
+                       class="btn btn-eliminar"
+                       onclick="return confirm('¿Eliminar esta colonia?')">Eliminar</a>
+                </td>
+            </tr>
+            <!-- Mensaje si no hay resultados -->
+            <tr th:if="${#lists.isEmpty(colonias)}">
+                <td colspan="8" class="sin-resultados">No se encontraron colonias.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="total">Total: <span th:text="${#lists.size(colonias)}">0</span> colonia(s)</p>
+</div>
+
+</body>
+</html>

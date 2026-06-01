@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Búsqueda Avanzada - Colonias</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🔍 Búsqueda Avanzada</h1>
+    <p class="subtitulo">Usa las queries personalizadas del repositorio</p>
+
+    <!-- QUERY 1: Colonias más baratas que un precio -->
+    <div class="busqueda-bloque">
+        <h2>Colonias por precio máximo</h2>
+        <p class="query-info">
+            Query: <code>SELECT c FROM Colonia c WHERE c.precio &lt; :precio ORDER BY c.precio ASC</code>
+        </p>
+        <form th:action="@{/colonias/buscar}" method="get" class="filtros">
+            <input type="number" name="precioMax" th:value="${precioMax}"
+                   step="0.01" min="0" placeholder="Precio máximo en €"/>
+            <button type="submit" class="btn btn-buscar">Buscar</button>
+        </form>
+    </div>
+
+    <!-- QUERY 2: Colonias por marca -->
+    <div class="busqueda-bloque">
+        <h2>Buscar por marca</h2>
+        <p class="query-info">
+            Query: <code>SELECT c FROM Colonia c WHERE LOWER(c.marca) LIKE LOWER('%:marca%')</code>
+        </p>
+        <form th:action="@{/colonias/buscar}" method="get" class="filtros">
+            <input type="text" name="marca" th:value="${marcaBuscar}"
+                   placeholder="Ej: Chanel, Armani..."/>
+            <button type="submit" class="btn btn-buscar">Buscar</button>
+        </form>
+    </div>
+
+    <!-- RESULTADOS -->
+    <!--
+        th:if="${resultado != null}" solo muestra la tabla si se ha hecho alguna búsqueda.
+        resultado es la lista que el controlador añade al modelo.
+    -->
+    <div th:if="${resultado != null}">
+        <h2>Resultados (<span th:text="${#lists.size(resultado)}">0</span>)</h2>
+
+        <table th:if="${!#lists.isEmpty(resultado)}">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Marca</th>
+                    <th>Familia</th>
+                    <th>Volumen</th>
+                    <th>Precio (€)</th>
+                    <th>Género</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="colonia : ${resultado}">
+                    <td th:text="${colonia.nombre}"></td>
+                    <td th:text="${colonia.marca}"></td>
+                    <td th:text="${colonia.familiaOlfativa}"></td>
+                    <td th:text="${colonia.volumenMl} + ' ml'"></td>
+                    <td th:text="${#numbers.formatDecimal(colonia.precio,1,2)}"></td>
+                    <td th:text="${colonia.genero}"></td>
+                    <td>
+                        <a th:href="@{/colonias/{id}(id=${colonia.id})}" class="btn btn-ver">Ver</a>
+                        <a th:href="@{/colonias/editar/{id}(id=${colonia.id})}" class="btn btn-editar">Editar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p th:if="${#lists.isEmpty(resultado)}" class="sin-resultados">
+            No se encontraron colonias con esos criterios.
+        </p>
+    </div>
+
+    <div class="botones">
+        <a th:href="@{/colonias}" class="btn btn-cancelar">← Volver al listado</a>
+    </div>
+</div>
+
+</body>
+</html>

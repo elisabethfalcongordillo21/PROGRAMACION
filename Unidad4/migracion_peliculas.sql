@@ -108,6 +108,12 @@ CREATE TABLE IF NOT EXISTS `peliculas_marcadiz`.`sala` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `peliculas_marcadiz`.`premio` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(255) NULL,
+  `categoria` varchar(255) NULL,
+  `anyio_prem` INT NULL,
+  PRIMARY KEY (`id`));
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

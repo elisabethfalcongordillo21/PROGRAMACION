@@ -18,7 +18,7 @@ public class Db {
 
     public static Connection conectar() {
         // Al crear el dotenv cargamos todas las variables
-        Dotenv dotenv = Dotenv.load();
+         Dotenv dotenv = Dotenv.configure().directory(".").load();
 
         // Asigno las variables desde el fichero .env
         String host = dotenv.get("DB_HOST");
